@@ -33,18 +33,31 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean delete(int id) {
+        Product product = getId(id);
+
+        return product != null && productRepository.delete(product);
+    }
+
+    @Override
+    public Product getId(int id) {
         Product product = null;
 
         Iterator<Product> iterator = productRepository.findAll();
-        while(iterator.hasNext()){
+
+        while (iterator.hasNext()) {
             Product cur = iterator.next();
-            if (cur.getProductId().equals(Integer.toString(id))){
+            if (cur.getProductId().equals(Integer.toString(id))) {
                 product = cur;
                 break;
             }
         }
 
-        return product != null && productRepository.delete(product);
+        return product;
     }
 
+    @Override
+    public Product edit(Product product) {
+        productRepository.edit(product);
+        return product;
+    }
 }

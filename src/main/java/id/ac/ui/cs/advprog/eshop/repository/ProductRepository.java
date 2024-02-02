@@ -20,6 +20,16 @@ public class ProductRepository {
         return productData.remove(product);
     }
 
+    public Product edit(Product product) {
+        for (int i = 0; i < productData.size(); i++){
+            Product cur = productData.get(i);
+            if (cur.getProductId().equals(product.getProductId())){
+                return productData.set(i, product);
+            }
+        }
+       return null;
+    }
+
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
