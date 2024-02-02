@@ -26,6 +26,7 @@ public class ProductController {
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model) {
         service.create(product);
+        System.out.println(product.getProductId());
         return "redirect:list";
     }
 
@@ -34,5 +35,11 @@ public class ProductController {
         List<Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
         return "ProductList";
+    }
+
+    @GetMapping("/delete/{productId}")
+    public String deleteProduct(@ModelAttribute Product product, Model model, @PathVariable int productId){
+        service.delete(productId);
+        return "redirect:/product/list";
     }
 }

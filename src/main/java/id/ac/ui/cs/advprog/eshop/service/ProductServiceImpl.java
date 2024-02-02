@@ -14,9 +14,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    private int id = 0;
 
     @Override
     public Product create(Product product) {
+        product.setProductId(Integer.toString(++id));
         productRepository.create(product);
         return product;
     }
@@ -28,4 +30,21 @@ public class ProductServiceImpl implements ProductService {
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
     }
+
+    @Override
+    public boolean delete(int id) {
+        Product product = null;
+
+        Iterator<Product> iterator = productRepository.findAll();
+        while(iterator.hasNext()){
+            Product cur = iterator.next();
+            if (cur.getProductId().equals(Integer.toString(id))){
+                product = cur;
+                break;
+            }
+        }
+
+        return product != null && productRepository.delete(product);
+    }
+
 }
