@@ -7,8 +7,9 @@ import java.util.List;
 public interface ProductService {
     public Product create(Product product);
     public List<Product> findAll();
-    public boolean delete(int id);
-    public Product edit(Product product);
+    public boolean delete(String id);
 
-    public Product getId(int id);
+    public Product getId(String id);
+
+    public Product edit(Product product);
 }
