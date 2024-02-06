@@ -21,7 +21,7 @@ class ProductTest {
 
     @Test
     void testGetProductName() {
-        assertEquals("Sanpo Cap Bambang", this.product.getProductName());
+        assertEquals("Sampo Cap Bambang", this.product.getProductName());
 
     }
 
