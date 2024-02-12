@@ -26,7 +26,7 @@ repositories {
 sonar {
     properties {
         property("sonar.projectKey", "HezBoomin_eshop")
-        property("sonar.organization", "HezBooomin")
+        property("sonar.organization", "hezboomin")
         property("sonar.host.url", "https://sonarcloud.io")
     }
 }
