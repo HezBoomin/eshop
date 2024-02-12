@@ -74,6 +74,10 @@ public class ProductServiceTest {
         product.setProductName("Test Product");
         product.setProductQuantity(10);
 
+        Product product2 = new Product();
+        product2.setProductName("Test Product 2");
+        product2.setProductQuantity(15);
+
         when(productRepository.create(product)).thenReturn(product);
 
         // Mocking the behavior of productRepository.findAll to return an iterator containing the product
@@ -89,9 +93,11 @@ public class ProductServiceTest {
 
         // Call the service method to delete the product
         boolean deleted = productService.delete(product.getProductId());
+        boolean noDeletion = productService.delete(product2.getProductId());
 
         // Verify that the product deletion was successful
         assertTrue(deleted);
+        assertFalse(noDeletion);
     }
 
     @Test
