@@ -142,4 +142,22 @@ public class ProductRepositoryTest {
 
 
     }
+
+    @Test
+    void testGetId() {
+        Product product1 = new Product();
+        product1.setProductId("eb558e9f-1c35-460e-8860-71af6af63bd6");
+        product1.setProductName("Siril");
+        product1.setProductQuantity(20);
+        productRepository.create(product1);
+
+        Product targetProduct1 = productRepository.findById("eb558e9f-1c35-460e-8860-71af6af63bd6");
+
+        assertEquals(targetProduct1, product1);
+
+        Product targetProduct2 = productRepository.findById("eb558e9f-1c35-460e-8860-710f6af63bd6");
+
+        assertNull(targetProduct2);
+
+    }
 }
