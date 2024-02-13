@@ -1,7 +1,7 @@
 # Reflection
 
-## Hezekial Octora Yudha Tampubolon
-## 2206046714
+## Hezekial Octora Yudha Tampubolon - 2206046714
+## Module 1 - Reflection
 
 ### Exercise 1
 
@@ -26,4 +26,16 @@ I think the code for the new test will be clean because my CreateProductFunction
 The code could become repetitive if we use the same setup, so it would be good if we use the prior setups and initial 
 variables to reduce redundancies.
 
+## Module 2 - Reflection
 
+### List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
+
+The quailty issue that I fix is Unused import. It's pretty straight forward to fix this quality issue, 
+that is to delete the unused import. Inside Product.java there's an unused import that i just delete right away.
+To make the code cleaner, I also delete some unused import in other files.
+
+### Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
+
+Yes it implemented Continuous Integration and Continuous Deployment. Everytime I push my code to GitHub, there are tools
+such ass JUnit, OSSF Scorecard, and Sonarcloud to test my code so my code is integreted and verified. I also implement
+automatic deployment with Koyeb using a Dockerfile.
