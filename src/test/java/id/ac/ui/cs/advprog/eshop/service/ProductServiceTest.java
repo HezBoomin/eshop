@@ -2,16 +2,13 @@ package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
 
-import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
-import org.bouncycastle.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.*;
 
@@ -74,6 +71,10 @@ public class ProductServiceTest {
         product.setProductName("Test Product");
         product.setProductQuantity(10);
 
+        Product product2 = new Product();
+        product2.setProductName("Test Product 2");
+        product2.setProductQuantity(15);
+
         when(productRepository.create(product)).thenReturn(product);
 
         // Mocking the behavior of productRepository.findAll to return an iterator containing the product
@@ -89,9 +90,11 @@ public class ProductServiceTest {
 
         // Call the service method to delete the product
         boolean deleted = productService.delete(product.getProductId());
+        boolean noDeletion = productService.delete(product2.getProductId());
 
         // Verify that the product deletion was successful
         assertTrue(deleted);
+        assertFalse(noDeletion);
     }
 
     @Test
