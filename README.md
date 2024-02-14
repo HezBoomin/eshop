@@ -40,4 +40,4 @@ Yes it implemented Continuous Integration and Continuous Deployment. Everytime I
 such ass JUnit, OSSF Scorecard, and Sonarcloud to test my code so my code is integreted and verified. I also implement
 automatic deployment with Koyeb using a Dockerfile.
 
-[Deployment Link] (https://eshop-hezboomin.koyeb.app/)
+[Deployment Link](https://eshop-hezboomin.koyeb.app/)
