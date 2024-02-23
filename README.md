@@ -44,24 +44,16 @@ automatic deployment with Koyeb using a Dockerfile.
 
 ### Exercise
 
-> Have you implemented SRP?
+1. I applied SRP, OCP, and LSP. SRP asserts that a class should have a singular responsibility.
+   OCD maintains that a module should be amenable to extension to accommodate new requirements
+   while remaining impervious to direct modification.  LSP guides the design of inheritance hierarchies in object-oriented systems,
+   ensuring that subclasses can be used interchangeably with their base classes without introducing unexpected behavior.
 
-Yes i have implemented SRP. SRP asserts that a class should have a singular responsibility. Here I divide the functionality
-for Car and Product. Car and Product act as 2 different functionality where Car managing car and Product managing Product, thus
-we need to make them as a single java class.
-
-> Have you implemented OCP
-
-Yes i have implemented OCP. OCD maintains that a module should be amenable to extension to accommodate new requirements 
-while remaining impervious to direct modification. In CarRepository and ProductRepository the method create itself 
-doesn't require modification when extending its functionality. Despite being closed for modification, the method allows for extension.
-If the product passed into the method already has a productId, the method simply adds it to the productData without any modification.
-If the product doesn't have a productId, it generates a new one using UUID.randomUUID() and assigns it to the product. 
-This extension point allows for the addition of new products without modifying the method itself.
-
-> Have you implemented LSP?
-
-
+2. The advantages of applying SOLID principles is to minimize dependencies, allowing other developers to develop our app further
+   without causing any problem when they try to develop one of the aspect of the app.
+3. The disadvantages of not applying SOLID principles is it can cause a harmful ripple effect to others when other developers try to develop
+   the app. There can be a case where if one aspect of the app is to dependent to other aspect it can cause error or problem
+   to that other aspect.
 
 [Deployment Link](https://eshop-hezboomin.koyeb.app/)
 
