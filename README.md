@@ -40,4 +40,29 @@ Yes it implemented Continuous Integration and Continuous Deployment. Everytime I
 such ass JUnit, OSSF Scorecard, and Sonarcloud to test my code so my code is integreted and verified. I also implement
 automatic deployment with Koyeb using a Dockerfile.
 
+## Module 3
+
+### Exercise
+
+> Have you implemented SRP?
+
+Yes i have implemented SRP. SRP asserts that a class should have a singular responsibility. Here I divide the functionality
+for Car and Product. Car and Product act as 2 different functionality where Car managing car and Product managing Product, thus
+we need to make them as a single java class.
+
+> Have you implemented OCP
+
+Yes i have implemented OCP. OCD maintains that a module should be amenable to extension to accommodate new requirements 
+while remaining impervious to direct modification. In CarRepository and ProductRepository the method create itself 
+doesn't require modification when extending its functionality. Despite being closed for modification, the method allows for extension.
+If the product passed into the method already has a productId, the method simply adds it to the productData without any modification.
+If the product doesn't have a productId, it generates a new one using UUID.randomUUID() and assigns it to the product. 
+This extension point allows for the addition of new products without modifying the method itself.
+
+> Have you implemented LSP?
+
+
+
 [Deployment Link](https://eshop-hezboomin.koyeb.app/)
+
+
