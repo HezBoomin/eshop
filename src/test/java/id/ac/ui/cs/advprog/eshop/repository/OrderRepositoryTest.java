@@ -1,19 +1,23 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.model.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class OrderRepositoryTest {
-    orderRepository = new OrderRepository();
+    OrderRepository orderRepository;
 
     List<Order> orders;
 
     @BeforeEach
     public void setUp() {
-        ordersRepository = new OrderRepository();
+        orderRepository = new OrderRepository();
 
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
@@ -39,7 +43,7 @@ class OrderRepositoryTest {
         Order order = orders.get(1);
         Order result = orderRepository.save(order);
 
-        Order findResult = orderRepository.findById(result.get(1).getId());
+        Order findResult = orderRepository.findById(orders.get(1).getId());
         assertEquals(order.getId(), result.getId());
         assertEquals(order.getId(), findResult.getId());
         assertEquals(order.getOrderTime(), findResult.getOrderTime());
@@ -56,7 +60,7 @@ class OrderRepositoryTest {
         Order result = orderRepository.save(newOrder);
 
         Order findResult = orderRepository.findById(orders.get(1).getId());
-        asserEquals(order.getId(), result.getId());
+        assertEquals(order.getId(), result.getId());
         assertEquals(order.getId(), findResult.getId());
         assertEquals(order.getOrderTime(), findResult.getOrderTime());
         assertEquals(order.getAuthor(), findResult.getAuthor());
@@ -87,11 +91,22 @@ class OrderRepositoryTest {
     }
 
     @Test
+    void testFindAllByAuthorIfAuthorCorrect() {
+        for (Order order : orders) {
+            orderRepository.save(order);
+        }
+
+        List<Order> orderList = orderRepository.findAllByAuthor(
+                orders.get(1).getAuthor());
+        assertEquals(2, orderList.size());
+    }
+
+    @Test
     void testFindAllAuthorIfAllLowercase() {
         orderRepository.save(orders.get(1));
 
         List<Order> orderList = orderRepository.findAllByAuthor(
                 orders.get(1).getAuthor().toLowerCase());
-        asserttrue(orderList.isEmpty());
+        assertTrue(orderList.isEmpty());
     }
 }
