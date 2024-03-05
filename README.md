@@ -40,4 +40,21 @@ Yes it implemented Continuous Integration and Continuous Deployment. Everytime I
 such ass JUnit, OSSF Scorecard, and Sonarcloud to test my code so my code is integreted and verified. I also implement
 automatic deployment with Koyeb using a Dockerfile.
 
+## Module 3
+
+### Exercise
+
+1. I applied SRP, OCP, and LSP. SRP asserts that a class should have a singular responsibility.
+   OCD maintains that a module should be amenable to extension to accommodate new requirements
+   while remaining impervious to direct modification.  LSP guides the design of inheritance hierarchies in object-oriented systems,
+   ensuring that subclasses can be used interchangeably with their base classes without introducing unexpected behavior.
+
+2. The advantages of applying SOLID principles is to minimize dependencies, allowing other developers to develop our app further
+   without causing any problem when they try to develop one of the aspect of the app.
+3. The disadvantages of not applying SOLID principles is it can cause a harmful ripple effect to others when other developers try to develop
+   the app. There can be a case where if one aspect of the app is to dependent to other aspect it can cause error or problem
+   to that other aspect.
+
 [Deployment Link](https://eshop-hezboomin.koyeb.app/)
+
+
