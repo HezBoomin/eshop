@@ -1,5 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
+
 import java.util.Map;
 
 public class PaymentVoucherCode extends Payment{
@@ -16,14 +19,14 @@ public class PaymentVoucherCode extends Payment{
         if (paymentData.isEmpty()) {
             throw new IllegalArgumentException();
         } else if (paymentData.get("voucherCode").isEmpty()) {
-            this.setStatus("REJECTED");
+            this.setStatus(PaymentStatus.REJECTED.getValue());
         } else if (paymentData.get("voucherCode").length() < 16) {
-            this.setStatus("REJECTED");
+            this.setStatus(PaymentStatus.REJECTED.getValue());
         } else if (!paymentData.get("voucherCode").startsWith("ESHOP")) {
-            this.setStatus("REJECTED");
+            this.setStatus(PaymentStatus.REJECTED.getValue());
         } else {
             this.paymentData = paymentData;
-            this.setStatus("SUCCESS");
+            this.setStatus(PaymentStatus.SUCCESS.getValue());
         }
     }
 }

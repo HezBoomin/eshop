@@ -1,8 +1,10 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.Map;
 
 @Builder
@@ -18,15 +20,31 @@ public class Payment {
         this.id = id;
         this.method = method;
         this.paymentData = paymentData;
-        this.status = "WAITING";
+        this.status = PaymentStatus.WAITING.getValue();
+
+        String[] methodList = {"BANK_TRANSFER", "VOUCHER_CODE"};
+        if (Arrays.stream(methodList).noneMatch(item -> item.equals(method))) {
+            throw new IllegalArgumentException();
+        } else {
+            this.method = method;
+        }
     }
     public Payment(String id, String method, Map<String, String> paymentData, String status) {
         this(id, method, paymentData);
         this.setStatus(status);
+
+
+        String[] statusList = {"WAITING", "SUCCESS", "REJECTED"};
+        if (Arrays.stream(statusList).noneMatch(item -> item.equals(status))) {
+            throw new IllegalArgumentException();
+        } else {
+            this.status = status;
+        }
+
     }
 
     public void setStatus(String status) {
-        if (status.equals("SUCCESS") || status.equals("REJECTED")) {
+        if (PaymentStatus.contains(status)) {
             this.status = status;
         } else {
             throw new IllegalArgumentException();

@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import java.util.Map;
 
 public class PaymentBankTransfer extends Payment{
@@ -14,13 +15,18 @@ public class PaymentBankTransfer extends Payment{
 
     @Override
     public void setPaymentData(Map<String, String> paymentData) {
-        if (paymentData.isEmpty()) {
-            this.setStatus("REJECTED");
-        } else if (paymentData.get("bankName").isEmpty() || paymentData.get("referenceCode").isEmpty()) {
-            this.setStatus("REJECTED");
+        if (paymentData == null || paymentData.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        if (paymentData.get("bankName") == null && paymentData.get("referenceCode") == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (paymentData.get("bankName").isEmpty() || paymentData.get("referenceCode").isEmpty()) {
+            this.setStatus(PaymentStatus.REJECTED.getValue());
         } else {
             this.paymentData = paymentData;
-            this.setStatus("SUCCESS");
+            this.setStatus(PaymentStatus.SUCCESS.getValue());
         }
     }
 }
