@@ -54,6 +54,18 @@ automatic deployment with Koyeb using a Dockerfile.
 3. The disadvantages of not applying SOLID principles is it can cause a harmful ripple effect to others when other developers try to develop
    the app. There can be a case where if one aspect of the app is to dependent to other aspect it can cause error or problem
    to that other aspect.
+## Module 4
+
+## Reflection
+
+1. I think the TDD flow is useful enough for me. I think the TDD flow is useful because it helps me to write a clean code and also
+    helps me to write a code that is easy to maintain. It also helps me to write a code that is easy to understand and also easy to test.
+
+2. I think my test have successfully followed F.I.R.S.T. principle. The test is Fast, Independent, Repeatable, Self-Validating, and Timely. 
+    The test is fast because it only takes a few seconds to run. The test is independent because it doesn't depend on other test. The test is repeatable
+    because it will give the same result if we run the test multiple times. The test is self-validating because it will give a clear result if the test pass or fail.
+    The test is timely because it is written before the code is written.
+
 
 [Deployment Link](https://eshop-hezboomin.koyeb.app/)
 
