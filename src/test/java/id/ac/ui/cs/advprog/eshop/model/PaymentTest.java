@@ -41,7 +41,7 @@ class PaymentTest {
     @Test
     void testCreatePaymentInvalidMethod() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Payment payment = new Payment("13652556-012a-4c07-b546-54eb1396d79b", "INVALID_METHOD", this.paymentData);
+            Payment payment = new Payment("13652556-012a-4c07-b546-54eb1396d79b", "INVALID_METHOD", this.paymentData, "WAITING");
         });
     }
 
