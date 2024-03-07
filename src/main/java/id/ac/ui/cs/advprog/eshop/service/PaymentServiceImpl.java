@@ -1,7 +1,9 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
+import id.ac.ui.cs.advprog.eshop.repository.OrderRepository;
 import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,25 +16,46 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
     @Autowired
-    private OrderService orderService;
+    private OrderRepository orderRepository;
 
     @Override
     public Payment addPayment(Order order, String Method, Map<String, String> paymentDetails) {
+        Payment payment = new Payment(order.getId(), Method, paymentDetails);
+        if (paymentRepository.findById(payment.getId()) == null) {
+            paymentRepository.save(payment);
+            return payment;
+        }
         return null;
     }
 
     @Override
     public Payment setStatus(Payment payment, String status) {
-        return null;
+        Order order = orderRepository.findById(payment.getId());
+        if (order != null) {
+            if (status.equals("SUCCESS")) {
+                order.setStatus(OrderStatus.SUCCESS.getValue());
+            } else if (status.equals("REJECTED")) {
+                order.setStatus(OrderStatus.FAILED.getValue());
+            } else {
+                throw new IllegalArgumentException();
+            }
+            orderRepository.save(order);
+            payment.setStatus(status);
+            paymentRepository.save(payment);
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+        return payment;
     }
 
     @Override
     public Payment getPayment(String paymentId) {
-        return null;
+        return paymentRepository.findById(paymentId);
     }
 
     @Override
     public List<Payment> getAllPayments() {
-        return null;
+        return paymentRepository.findAll();
     }
 }

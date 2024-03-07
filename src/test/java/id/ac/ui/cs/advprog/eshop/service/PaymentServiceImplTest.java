@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,6 +28,7 @@ public class PaymentServiceImplTest {
     PaymentServiceImpl paymentService;
     @Mock
     PaymentRepository paymentRepository;
+    @Mock
     OrderRepository orderRepository;
     List<Payment> payments;
     List<Order> orders;
@@ -64,10 +64,10 @@ public class PaymentServiceImplTest {
     void testAddPayment() {
         Payment payment = payments.getFirst();
         Order order = orders.getFirst();
-        doReturn(payment).when(paymentRepository).save(payment);
+        doReturn(payment).when(paymentRepository).save(any(Payment.class));
 
         Payment result = paymentService.addPayment(order, PaymentMethod.VOUCHER_CODE.getValue(), Map.of("voucherCode", "ESHOP12345678ABC"));
-        verify(paymentRepository, times(1)).save(payment);
+        verify(paymentRepository, times(1)).save(any(Payment.class));
         assertEquals(payment.getId(), result.getId());
     }
 
@@ -116,10 +116,8 @@ public class PaymentServiceImplTest {
         Payment payment = payments.getFirst();
         Order order = orders.getFirst();
         doReturn(order).when(orderRepository).findById(payment.getId());
-        doReturn(order).when(orderRepository).save(order);
-        doReturn(payment).when(paymentRepository).save(payment);
 
-        assertNull(paymentService.setStatus(payment, "MEOW"));
+        assertThrows(IllegalArgumentException.class, () -> paymentService.setStatus(payment, "MEOW"));
         verify(paymentRepository, times(0)).save(payment);
         verify(orderRepository, times(0)).save(order);
     }
